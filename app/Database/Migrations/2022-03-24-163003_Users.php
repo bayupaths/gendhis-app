@@ -60,9 +60,7 @@ class Users extends Migration
                 'unsigned'       => true,
             ],
         ]);
-
         $this->forge->addKey('user_id', true);
-        $this->forge->addForeignKey('role_id', 'gendhis_role', 'role_id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('gendhis_users');
     }
 

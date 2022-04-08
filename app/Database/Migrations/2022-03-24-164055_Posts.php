@@ -15,6 +15,10 @@ class Posts extends Migration
                 'unsigned'       => true,
                 'auto_increment' => true,
             ],
+            'post_number'   => [
+                'type'          => 'CHAR',
+                'constraint'    => '20',
+            ],
             'post_title' => [
                 'type'          => 'VARCHAR',
                 'constraint'    => '255',
@@ -66,8 +70,6 @@ class Posts extends Migration
             ],
         ]);
         $this->forge->addKey('post_id', true);
-        $this->forge->addForeignKey('category_id', 'gendhis_category', 'category_id');
-        $this->forge->addForeignKey('user_id', 'gendhis_users', 'user_id');
         $this->forge->createTable('gendhis_post');
     }
 

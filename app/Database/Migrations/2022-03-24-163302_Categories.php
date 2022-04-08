@@ -29,9 +29,13 @@ class Categories extends Migration
                 'constraint'    => '125',
                 'unique'         => true,
             ],
-            'category_cover' => [
+            'category_bg' => [
                 'type'          => 'VARCHAR',
-                'constraint'    => '100'
+                'constraint'    => '50'
+            ],
+            'category_color' => [
+                'type'          => 'VARCHAR',
+                'constraint'    => '50'
             ],
             'category_icon' => [
                 'type'          => 'VARCHAR',

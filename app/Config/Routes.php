@@ -32,7 +32,33 @@ $routes->setAutoRoute(true);
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
+$routes->get('/category', 'Home::category');
+$routes->get('/category/(:segment)', 'Home::category/$1');
 
+$routes->get('/login', 'Auth::index');
+$routes->get('/register', 'Auth::register');
+$routes->post('/register/process', 'Auth::process');
+$routes->post('/login/process', 'Auth::login');
+$routes->get('/logout', 'Auth::logout', ['filter' => 'authfilter']);
+
+$routes->group('admin', function ($routes) {
+    $routes->get('dashboard', 'Admin\Dashboard::index');
+    $routes->group('author', function ($routes) {
+        // routing untuk menu author
+    });
+    $routes->group('tutorials', function ($routes) {
+        $routes->get('personal', 'Admin\Tutorial::index');
+        $routes->get('create-post/personal', 'Admin\Tutorial::addPost');
+        $routes->add('publish', 'Admin\Tutorial::submitpost');
+        $routes->add('get-category', 'Admin\Tutorial::change_category');
+        $routes->add('check-title', 'Admin\Tutorial::check_titlePost');
+        $routes->get('freelance', 'Admin\Tutorial::freelance');
+        $routes->get('list-tutorial', 'Admin\Tutorial::listTutorial');
+    });
+    $routes->group('setting', function ($routes) {
+        // routing untuk menu settings
+    });
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
